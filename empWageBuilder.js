@@ -37,13 +37,25 @@ function getWorkingHours(userInput) {
 
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
+let empDailyWageArr = new Array();
 
-while(totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS){
-    let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
-    totalWorkingDays++;
-    totalEmpHrs += getWorkingHours(userInput);
+/**
+ * Function for calculating employee wage
+ * @param {*} empHrs 
+ * @returns 
+ */
+const calculateDailyWage = (empHrs) => {
+    return empHrs * WAGE_PER_HOUR;
 }
 
-let empWage = totalEmpHrs * WAGE_PER_HOUR;
+while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS) {
+    let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
+    totalWorkingDays++;
+    let empHrs = getWorkingHours(userInput);
+    totalEmpHrs = totalEmpHrs + empHrs;
+    empDailyWageArr.push(calculateDailyWage(empHrs))
+}
+
+let empWage = calculateDailyWage(totalEmpHrs);
 
 console.log("\nTotal Days : " + totalWorkingDays + ", Total Hrs : " + totalEmpHrs + ", Emp Wage : " + empWage);
