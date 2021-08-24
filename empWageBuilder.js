@@ -19,19 +19,23 @@ const WAGE_PER_HOUR = readLine.questionInt("\nEnter Wage Per Hour in dollar : ")
 let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
 let empHrs = 0;
 
-switch (userInput) {
-    case IS_PART_TIME:
-        console.log("\nEmployee is Present Part Time");
-        empHrs = PART_TIME_HOURS;
-        break;
-    case IS_FULL_TIME:
-        console.log("\nEmployee is Present Full Time");
-        empHrs = FULL_TIME_HOURS;
-        break;
-    default:
-        console.log("\nInvalid Input");
-        break;
+/**
+ * Function for getting employee working hours for part time and full time
+ * @param {*} userInput : user input 1 for Part Time  Or 2 for Full Time
+ * @returns : PART_TIME_HOURS or FULL_TIME_HOURS
+ */
+function getWorkingHours(userInput) {
+    switch (userInput) {
+        case IS_PART_TIME:
+            return PART_TIME_HOURS;
+        case IS_FULL_TIME:
+            return FULL_TIME_HOURS;
+        default:
+            return 0;
+    }
 }
+
+empHrs = getWorkingHours(userInput);
 
 let empWage = empHrs * WAGE_PER_HOUR;
 
