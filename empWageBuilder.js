@@ -10,20 +10,27 @@
 
 var readLine = require('readline-sync');
 
-const IS_ABSENT = 0;
-const IS_PRESENT = 1;
+const IS_PART_TIME = 1;
+const IS_FULL_TIME = 2;
+const PART_TIME_HOURS = 4;
+const FULL_TIME_HOURS = 8;
 
 const WAGE_PER_HOUR = readLine.questionInt("\nEnter Wage Per Hour in dollar : ");
-let userInput = readLine.questionInt("\nEnter 0 Or 1 : ");
+let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
 let empHrs = 0;
 
-if (userInput == IS_ABSENT) {
-    console.log("\nEmployee is Absent");
-} else if (userInput == IS_PRESENT) {
-    console.log("\nEmployee is PRESENT");
-    empHrs = readLine.questionInt("\nEnter Working Hours : ");
-} else {
-    console.log("\nInvalid Input");
+switch (userInput) {
+    case IS_PART_TIME:
+        console.log("\nEmployee is Present Part Time");
+        empHrs = PART_TIME_HOURS;
+        break;
+    case IS_FULL_TIME:
+        console.log("\nEmployee is Present Full Time");
+        empHrs = FULL_TIME_HOURS;
+        break;
+    default:
+        console.log("\nInvalid Input");
+        break;
 }
 
 let empWage = empHrs * WAGE_PER_HOUR;
