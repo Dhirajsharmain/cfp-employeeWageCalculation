@@ -17,7 +17,7 @@ const FULL_TIME_HOURS = 8;
 
 const WAGE_PER_HOUR = readLine.questionInt("\nEnter Wage Per Hour in dollar : ");
 const NO_OF_WORKING_DAYS = readLine.questionInt("\nEnter Days in a Month : ");
-let empHrs = 0;
+const MAX_HRS_IN_MONTH = readLine.questionInt("\nEnter Maximum Working Hours in a Month : ");
 
 /**
  * Function for getting employee working hours for part time and full time
@@ -35,11 +35,15 @@ function getWorkingHours(userInput) {
     }
 }
 
-for (let i = 0; i < NO_OF_WORKING_DAYS; i++) {
+let totalEmpHrs = 0;
+let totalWorkingDays = 0;
+
+while(totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS){
     let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
-    empHrs += getWorkingHours(userInput);
+    totalWorkingDays++;
+    totalEmpHrs += getWorkingHours(userInput);
 }
 
-let empWage = empHrs * WAGE_PER_HOUR;
+let empWage = totalEmpHrs * WAGE_PER_HOUR;
 
-console.log("\nEmp Wage : " + empWage);
+console.log("\nTotal Days : " + totalWorkingDays + ", Total Hrs : " + totalEmpHrs + ", Emp Wage : " + empWage);
