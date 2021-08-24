@@ -16,7 +16,7 @@ const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 
 const WAGE_PER_HOUR = readLine.questionInt("\nEnter Wage Per Hour in dollar : ");
-let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
+const NO_OF_WORKING_DAYS = readLine.questionInt("\nEnter Days in a Month : ");
 let empHrs = 0;
 
 /**
@@ -35,7 +35,10 @@ function getWorkingHours(userInput) {
     }
 }
 
-empHrs = getWorkingHours(userInput);
+for (let i = 0; i < NO_OF_WORKING_DAYS; i++) {
+    let userInput = readLine.questionInt("\nEnter 1 for Part Time  Or 2 for Full Time : ");
+    empHrs += getWorkingHours(userInput);
+}
 
 let empWage = empHrs * WAGE_PER_HOUR;
 
